@@ -79,4 +79,5 @@ theme: maupassant
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/xigaohu/my-site
+  branch: master
+  repo: https://github.com/xigaohu/xigaohu.github.io
