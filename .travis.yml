@@ -30,4 +30,4 @@ after_script:
   - git config --global user.email "xigaohu@163.com"
   - git add .
   - git commit -m "update by travis"
-  - git push --force --quiet "https://${repo_token}@github.com/xigaohu/xigaohu.github.io.git" master:master
+  - git push --force --quiet "https://${REP_TOKEN}@github.com/xigaohu/xigaohu.github.io.git" master:master
