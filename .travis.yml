@@ -34,4 +34,4 @@ after_script:
 
 env:
  global:
-   - repo_addr: github.com/xigaohu/xigaohu.github.iogit
+   - repo_addr: github.com/xigaohu/xigaohu.github.io.git
