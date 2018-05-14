@@ -20,7 +20,7 @@ import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@RunWith(SpringRunner.class)
+@RunWith(SpringRunner.class) //不再使用SpringJUnit4ClassRunner.class
 @SpringBootTest //不再使用SpringApplicationConfiguration
 @AutoConfigureMockMvc //不需要下面的before了
 public class MockMvcWebTests {
