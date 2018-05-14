@@ -1,7 +1,7 @@
 ---
 title: 使用Travis进行hexo的持续集成
 date: 2018-04-30 20:56:33
-tags:
+tags: 持续集成
 ---
 
 1. 由于hexo会将项目重写，所以要在github.io上面创建一个dev分支来放代码，而master用来放默认的静态页面

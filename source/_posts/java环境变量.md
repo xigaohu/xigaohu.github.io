@@ -1,7 +1,7 @@
 ---
 title: java环境变量
 date: 2018-04-30 20:55:02
-tags:
+tags: java
 ---
 1. PATH里添加
 `%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;`
