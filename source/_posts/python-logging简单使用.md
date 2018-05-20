@@ -6,9 +6,9 @@ tags: python
 
 logging一共有三种4种配置形式
 - 基础型 baseconfig
-- 文件型
 - 代码型
 - 字典型
+- 文件ini型
 
 只使用了代码型
 ```python
@@ -40,8 +40,13 @@ logger.addHandler(handler_file)
 logger.addHandler(handler_error_file)
 # log级别
 logger.setLevel(logging.INFO)
+# 进行记录
+logger.debug('often makes a very good meal of %s', 'visiting tourists')
 ```
-实现的需求
-1. 日志分割，使用RotatingFileHandler处理器设定了maxBytes，在日志文件大小为1M的时候就会将日志文件重命名为**debug.log.1**,然后新建一个**debug.log**,第二次的时候将**debug.log.1**->**debug.log.2**, 每次都会这样依次更改名字,直到日志文件数量到达backupCount的限制,将最老的一个删除以维持最多50个的日志文件
+#### 实现的需求
+1. 日志分割，使用RotatingFileHandler处理器设定了maxBytes，在日志文件大小为1M的时候就会将日志文件重命名为**debug.log.1**,然后新建一个**debug.log**,第二次的时候将**debug.log.1**->**debug.log.2**, 每次都会这样依次更改名字,直到日志文件数量到达backupCount的限制,将最老的一个删除以维持最多50个的日志文件。logging也可以使用时间分割
 2. 日志文件的编码, 需要在处理器里面指定`encoding = "UTF-8"`来避免出现日志编码错误
 3. 自定义时间，重写了formatter.formatTime来设定打印出来的时间始终是utc+8
+4. 分级别输出，info以上的日志都会用handler_file输出到**debug.log**，error以上的日志都会输出到**error.log**
+
+参考链接 [日志（Logging） — The Hitchhiker's Guide to Python](http://pythonguidecn.readthedocs.io/zh/latest/writing/logging.html)
