@@ -5,54 +5,54 @@ tags: python
 ---
 
 1. 编译环境准备
-```
-yum groupinstall 'Development Tools'
-yum install zlib-devel bzip2-devel openssl-devel ncurese-devel
- ```
+    ```
+    yum groupinstall 'Development Tools'
+    yum install zlib-devel bzip2-devel openssl-devel ncurese-devel
+    ```
 
- 2. 下载python3.6.5代码包
- ```
- wget https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tar.xz
- ```
+2. 下载python3.6.5代码包
+    ```
+    wget https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tar.xz
+    ```
 
-可以在**https://www.python.org/ftp/python/** 里面查找需要用的版本  
+    可以在**https://www.python.org/ftp/python/** 里面查找需要用的版本  
 
- 3. 编译
+3. 编译
 
- ```
-tar Jxvf Python-3.6.5.tar.xz
-cd Python-3.6.5
-./configure --prefix=/usr/local/python3
-make && make install
- ```
+    ```
+    tar Jxvf Python-3.6.5.tar.xz
+    cd Python-3.6.5
+    ./configure --prefix=/usr/local/python3
+    make && make install
+    ```
 
- 4. 更换Python版本
+4. 更换Python版本
 
-    1. 备份旧版本  
+    - 备份旧版本  
     `mv /usr/bin/python /usr/bin/python2.7`
-    2. 新建指向新版本 Python 以及 pip 的软连接
-    ```
-    ln -s /usr/local/python3/bin/python3.6 /usr/bin/python
-    ln -s /usr/local/python3/bin/pip3 /usr/bin/pip  
-    ```
+    - 新建指向新版本 Python 以及 pip 的软连接
+        ```
+        ln -s /usr/local/python3/bin/python3.6 /usr/bin/python
+        ln -s /usr/local/python3/bin/pip3 /usr/bin/pip  
+        ```
 
 5. 更新yum相关设置
 
-打开文件
-```
-vi /usr/bin/yum
-```
-将第一行修改为
-```
-#!/usr/bin/python2.7
-```
-若出现错误
-```
-File "/usr/libexec/urlgrabber-ext-down", line 28
-```
-将/usr/libexec/urlgrabber-ext-down的第一行修改
+    打开文件
+    ```
+    vi /usr/bin/yum
+    ```
+    将第一行修改为
+    ```
+    #!/usr/bin/python2.7
+    ```
+    若出现错误
+    ```
+    File "/usr/libexec/urlgrabber-ext-down", line 28
+    ```
+    将/usr/libexec/urlgrabber-ext-down的第一行修改
 
-[参考链接]("https://www.jianshu.com/p/8bd6e0695d7f")
+    [参考链接]("https://www.jianshu.com/p/8bd6e0695d7f")
 
 #### 其他尝试
 
