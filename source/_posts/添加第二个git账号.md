@@ -7,7 +7,7 @@ tags: cvs
 #### 1. 生成公钥私钥
 
 ```
-ssh-keygen -t rsa -C "gaohubin.163.com"  
+ssh-keygen -t rsa -C "gaohubin@163.com"  
 ```
         
 输入 **自定义**的文件名 id_rsa_lab，然后会生成两个文件 **id_rsa_lab.pub**与 **id_rsa_lab**

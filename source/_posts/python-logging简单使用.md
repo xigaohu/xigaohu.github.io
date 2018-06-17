@@ -5,7 +5,7 @@ tags: python
 ---
 
 logging一共有三种4种配置形式
-- 基础型 baseconfig
+- 基础型 basicconfig
 - 代码型
 - 字典型
 - 文件ini型
