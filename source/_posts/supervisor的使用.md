@@ -55,6 +55,8 @@ files = relative/directory/*.ini    ; 可以是 *.conf 或 *.ini
 [include]
 files = /etc/supervisord.d/*.ini
 ```
+
+
 在对应的目录下面创建文件
 ```ini
 [supervisord]
