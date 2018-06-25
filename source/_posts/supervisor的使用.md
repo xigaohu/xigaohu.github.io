@@ -6,13 +6,18 @@ tags:
 supervisor是一个用 Python 写的进程管理工具，可以很方便的用来启动、重启、关闭进程（不仅仅是 Python 进程）。除了对单个进程的控制，还可以同时启动、关闭多个进程，比如很不幸的服务器出问题导致所有应用程序都被杀死，此时可以用 supervisor 同时启动所有应用程序而不是一个一个地敲命令启动。
 
 #### 安装
-```pip install supervisor```  
-```yum install supervisor```
+可以使用
+
+`pip install supervisor`  
+
+或者用
+
+`yum install supervisor`
 
 #### 配置
 获取配置文件
 
-```echo_supervisord_conf```
+`echo_supervisord_conf`
 
 ```ini
 [unix_http_server]
@@ -51,6 +56,7 @@ files = relative/directory/*.ini    ; 可以是 *.conf 或 *.ini
 ```
 #### program配置
 将include修改为
+
 ```ini
 [include]
 files = /etc/supervisord.d/*.ini
@@ -76,9 +82,11 @@ stdout_logfile = /home/app/batt_eth_allcoin/debug.log
 ```
 #### 启动
 启动supervisorctl
-```supervisorctl -c /etc/supervisord.conf```
+
+`supervisorctl -c /etc/supervisord.conf`
 
 启动进程
+
 ```
 $ supervisorctl status
 $ supervisorctl stop usercenter
@@ -87,6 +95,7 @@ $ supervisorctl restart usercenter
 $ supervisorctl reread
 $ supervisorctl update
 ```
+
 [使用 supervisor 管理进程](http://liyangliang.me/posts/2015/06/using-supervisor/)
 
 [Supervisor and Environment Variables
