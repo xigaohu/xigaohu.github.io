@@ -17,7 +17,7 @@ supervisor是一个用 Python 写的进程管理工具，可以很方便的用�
 #### 配置
 获取配置文件
 
-`echo_supervisord_conf`
+`supervisord -c /etc/supervisord.conf`
 
 ```ini
 [unix_http_server]
@@ -80,10 +80,26 @@ stdout_logfile_backups = 20     ; stdout 日志文件备份数
 stdout_logfile = /home/app/batt_eth_allcoin/debug.log
 
 ```
-#### 启动
-启动supervisorctl
 
-`supervisorctl -c /etc/supervisord.conf`
+另一个配置文件
+```ini
+[program:binance]
+directory = /home/app/coins/multi_coin ; 程序的启动目录
+command = python2 -B -u imitate_order.py  ; 启动命令
+autostart = false    ; 在 supervisord 启动的时候也自动启动
+startsecs = 5        ; 启动 5 秒后没有异常退出，就当作已经正常启动了
+autorestart = false   ; 程序异常退出后自动重启
+startretries = 3 
+redirect_stderr = true  ; 把 stderr 重定向到 stdout，默认 false
+stdout_logfile_maxbytes = 5MB  ; stdout 日志文件大小，默认 50MB
+stdout_logfile_backups = 20     ; stdout 日志文件备份数
+stdout_logfile = /home/app/coins/multi_coin/debug.log
+```
+
+#### 启动
+启动supervisor
+
+`supervisord -c /etc/supervisord.conf`
 
 启动进程
 
