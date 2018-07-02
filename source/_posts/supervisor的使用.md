@@ -17,7 +17,7 @@ supervisor是一个用 Python 写的进程管理工具，可以很方便的用�
 #### 配置
 获取配置文件
 
-`supervisord -c /etc/supervisord.conf`
+`echo_supervisord_conf > /etc/supervisord.conf`
 
 ```ini
 [unix_http_server]
@@ -52,7 +52,7 @@ serverurl=unix:///tmp/supervisor.sock ; 通过 UNIX socket 连接 supervisord，
 
 ; 包含其他的配置文件
 [include]
-files = relative/directory/*.ini    ; 可以是 *.conf 或 *.ini
+files = relative/directory/*.ini    ; 可以是 *.conf 或 *.ini 用绝对路径
 ```
 #### program配置
 将include修改为
@@ -111,7 +111,21 @@ $ supervisorctl restart usercenter
 $ supervisorctl reread
 $ supervisorctl update
 ```
+*注意*
+在使用supervisorctl 时，如果supervisorctl 无法查找到配置文件，
 
+supervisorctl  无法获知与supervisord 该如何通讯，你可能会看到如下错误
+
+```
+root@xxx:/home/operation# supervisorctl status  
+http://localhost:9001 refused connection
+```
+处理解决办法：[supervisorctl配置文件简介](http://blog.51cto.com/finalbattle/1868454)
+
+```
+root@xxx:/home/operation# supervisorctl -c /path/to/supervisord.conf status  
+root@xxx:/home/operation# ln -s /path/to/supervisord.conf /etc/
+```
 [使用 supervisor 管理进程](http://liyangliang.me/posts/2015/06/using-supervisor/)
 
 [Supervisor and Environment Variables
