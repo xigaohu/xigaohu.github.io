@@ -18,6 +18,8 @@ supervisor是一个用 Python 写的进程管理工具，可以很方便的用�
 获取配置文件
 
 `echo_supervisord_conf > /etc/supervisord.conf`
+如果出现`echo_supervisord_conf: command not **found**` 则可能需要输入全路径，使用
+`find / -name supervisor*`找到路径
 
 ```ini
 [unix_http_server]
@@ -100,6 +102,7 @@ stdout_logfile = /home/app/coins/multi_coin/debug.log
 启动supervisor
 
 `supervisord -c /etc/supervisord.conf`
+如果supervisorctl不存在，就找到路径使用 `ln -s /usr/local/python3/bin/supervisorctl` 添加软链接 `/usr/bin/superviosrctl`
 
 启动进程
 
