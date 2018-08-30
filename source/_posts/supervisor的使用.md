@@ -9,6 +9,7 @@ supervisor是一个用 Python 写的进程管理工具，可以很方便的用�
 可以使用
 
 `pip install supervisor`  
+`pip install git+https://github.com/Supervisor/supervisor` python3版本
 
 或者用
 
@@ -102,7 +103,7 @@ stdout_logfile = /home/app/coins/multi_coin/debug.log
 启动supervisor
 
 `supervisord -c /etc/supervisord.conf`
-如果supervisorctl不存在，就找到路径使用 `ln -s /usr/local/python3/bin/supervisorctl` 添加软链接 `/usr/bin/superviosrctl`
+如果supervisorctl不存在，就找到路径使用 `ln -s /usr/local/python3/bin/supervisorctl` 添加软链接 `/usr/bin/supervisorctl`
 
 启动进程
 
