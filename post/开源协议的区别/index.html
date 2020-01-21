@@ -2,107 +2,39 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>开源协议的区别 | Gridea</title>
+<title>xiaohu</title>
 <meta name="description" content="温故而知新" />
-<link rel="shortcut icon" href="https://xigaohu.github.io/favicon.ico?v=1579575107787">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://xigaohu.github.io/favicon.ico?v=1579576229418">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link rel="stylesheet" href="https://xigaohu.github.io/styles/main.css">
-
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+<link rel="stylesheet" href="https://xigaohu.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="xiaohu - Atom Feed" href="https://xigaohu.github.io/atom.xml">
 
 
 
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://xigaohu.github.io">
-  <img class="avatar" src="https://xigaohu.github.io/images/avatar.png?v=1579575107787" alt="">
-  </a>
-  <h1 class="site-title">
-    Gridea
-  </h1>
-  <p class="site-description">
-    温故而知新
-  </p>
-  <div class="menu-container">
-    
-      
-        <a href="/" class="menu">
-          首页
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://xigaohu.github.io">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://xigaohu.github.io/images/avatar.png?v=1579576229418" alt="">
         </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">xiaohu</h1>
+      </div>
       
-    
-      
-        <a href="/archives" class="menu">
-          归档
-        </a>
-      
-    
-      
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about/" class="menu">
-          关于
-        </a>
-      
-    
-  </div>
-  <div class="social-container">
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  </div>
-</div>
-
-        <div class="post-detail">
-          <article class="post">
-            <h2 class="post-title">
-              开源协议的区别
-            </h2>
-            <div class="post-info">
-              <span>
-                2018-04-05
-              </span>
-              <span>
-                1 min read
-              </span>
-              
-            </div>
-            
-            <div class="post-content-wrapper">
-              <div class="post-content">
-                <p>开源协议的区别</p>
-<h4 id="gpl">GPL</h4>
-<p>GPL（GNU General Public License），使用GPL开发的软件无论是修改后使用或者没有修改直接使用的开发后的软件源代码必须是开源的，不能用GPL授权的代码来做商业软件，具有传染性，极大增加了使用GPL的软件的数量。</p>
-<h4 id="lgpl">LGPL</h4>
-<p>LGPL可以在不修改源代码的情况下进行引用，可以用来开发商业软件，如果修改了源代码，就必须将修改后的代码或者衍生出来的代码使用LGPL开放源代码。</p>
-<h4 id="apl">APL</h4>
-<p>允许修改代码后再发布（不用开放源代码）。</p>
-<h4 id="bsd">BSD</h4>
-<p>允许他人修改和重新发布代码，可以在此基础上开发出商业软件进行销售。需要包含一份版权提示和免责声明。</p>
-<h4 id="mit">MIT</h4>
-<p>最开放，协议唯一的条件就是在修改后的代码或者发行包包含原作者的许可信息。可以用于商业软件。</p>
-<p>参考了<a href="http://www.splaybow.com/post/gpl-apl-difference.html">开源许可协议GPL、APL、BSD、LGPL、MIT等的区别</a></p>
-
-              </div>
-              <div class="toc-container">
-                <ul class="markdownIt-TOC">
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
 <li>
 <ul>
 <li>
@@ -122,62 +54,192 @@
 </li>
 </ul>
 
-              </div>
-            </div>
-          </article>
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="menu-container">
+  <i class="remixicon-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu" style="animation-delay: 0.2s">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.4s">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about/" class="menu" style="animation-delay: 0.6000000000000001s">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700">Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a></div>
+    <a class="rss" href="https://xigaohu.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">开源协议的区别</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2018-04-05 / 1 min read
+        </div>
+        
+        <div class="post-content yue">
+          <p>开源协议的区别</p>
+<h4 id="gpl">GPL</h4>
+<p>GPL（GNU General Public License），使用GPL开发的软件无论是修改后使用或者没有修改直接使用的开发后的软件源代码必须是开源的，不能用GPL授权的代码来做商业软件，具有传染性，极大增加了使用GPL的软件的数量。</p>
+<h4 id="lgpl">LGPL</h4>
+<p>LGPL可以在不修改源代码的情况下进行引用，可以用来开发商业软件，如果修改了源代码，就必须将修改后的代码或者衍生出来的代码使用LGPL开放源代码。</p>
+<h4 id="apl">APL</h4>
+<p>允许修改代码后再发布（不用开放源代码）。</p>
+<h4 id="bsd">BSD</h4>
+<p>允许他人修改和重新发布代码，可以在此基础上开发出商业软件进行销售。需要包含一份版权提示和免责声明。</p>
+<h4 id="mit">MIT</h4>
+<p>最开放，协议唯一的条件就是在修改后的代码或者发行包包含原作者的许可信息。可以用于商业软件。</p>
+<p>参考了<a href="http://www.splaybow.com/post/gpl-apl-difference.html">开源许可协议GPL、APL、BSD、LGPL、MIT等的区别</a></p>
+
         </div>
 
         
 
+
+        <div class="flex justify-between py-8">
+          
+            <div class="prev-post">
+              <a href="https://xigaohu.github.io/post/java环境变量">
+                <h3 class="post-title">
+                  <i class="remixicon-arrow-left-line"></i>
+                  java环境变量
+                </h3>
+              </a>
+            </div>
+          
+
+          
+        </div>
+
         
-
-        <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | 
-  <a class="rss" href="https://xigaohu.github.io/atom.xml" target="_blank">RSS</a>
-</div>
-
-<script>
-  hljs.initHighlightingOnLoad()
-
-  let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
-
-  // This should probably be throttled.
-  // Especially because it triggers during smooth scrolling.
-  // https://lodash.com/docs/4.17.10#throttle
-  // You could do like...
-  // window.addEventListener("scroll", () => {
-  //    _.throttle(doThatStuff, 100);
-  // });
-  // Only not doing it here to keep this Pen dependency-free.
-
-  window.addEventListener("scroll", event => {
-    let fromTop = window.scrollY;
-
-    mainNavLinks.forEach((link, index) => {
-      let section = document.getElementById(decodeURI(link.hash).substring(1));
-      let nextSection = null
-      if (mainNavLinks[index + 1]) {
-        nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
-      }
-      if (section.offsetTop <= fromTop) {
-        if (nextSection) {
-          if (nextSection.offsetTop > fromTop) {
-            link.classList.add("current");
-          } else {
-            link.classList.remove("current");    
-          }
-        } else {
-          link.classList.add("current");
-        }
-      } else {
-        link.classList.remove("current");
-      }
-    });
-  });
-
-</script>
 
       </div>
     </div>
+
+    <script src="https://xigaohu.github.io/media/prism.js"></script>  
+<script>
+
+Prism.highlightAll()
+
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
+  
   </body>
 </html>
