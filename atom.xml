@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://xigaohu.github.io</id>
     <title>Gridea</title>
-    <updated>2020-01-21T02:44:26.831Z</updated>
+    <updated>2020-01-21T02:51:50.038Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://xigaohu.github.io"/>
     <link rel="self" href="https://xigaohu.github.io/atom.xml"/>
@@ -30,35 +30,480 @@
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Hello Gridea]]></title>
-        <id>https://xigaohu.github.io/post/hello-gridea</id>
-        <link href="https://xigaohu.github.io/post/hello-gridea">
+        <title type="html"><![CDATA[spring boot自定义配置文件]]></title>
+        <id>https://xigaohu.github.io/post/spring-boot自定义配置文件</id>
+        <link href="https://xigaohu.github.io/post/spring-boot自定义配置文件">
         </link>
-        <updated>2018-12-11T16:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-<!-- more -->
-<p><a href="https://github.com/getgridea/gridea">Github</a><br>
-<a href="https://gridea.dev/">Gridea 主页</a><br>
-<a href="http://fehey.com/">示例网站</a></p>
-<h2 id="特性">特性👇</h2>
-<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
-<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
-<p>🏷️  你可以对文章进行标签分组</p>
-<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
-<p>💻  你可以在 <strong>Windows</strong>，<strong>MacOS</strong> 或 <strong>Linux</strong> 设备上使用此客户端</p>
-<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
-<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
-<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
-<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
-<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
-<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前 🏃</p>
-<p>未来，它一定会成为你离不开的伙伴</p>
-<p>尽情发挥你的才华吧！</p>
-<p>😘 Enjoy~</p>
+        <updated>2018-09-10T08:04:50.000Z</updated>
+        <content type="html"><![CDATA[<p>配置类</p>
+<pre><code class="language-java">@Data
+@Component
+@ConfigurationProperties(prefix = &quot;coin.stc&quot;)
+@PropertySource(&quot;classpath:config/coins.properties&quot;)
+public class StcProperties {
+    /**
+     * 协议
+     */
+    private String protocol;
+    /**
+     * 主机
+     */
+    private String host;
+    /**
+     * 端口
+     */
+    private String port;
+    /**
+     * token
+     */
+    private String accesstoken;
+
+}
+</code></pre>
+<p>配置文件<code>config/coins.properties</code></p>
+<pre><code class="language-ini"># stc
+coin.stc.protocol = http
+coin.stc.host = 192.168.102.246
+coin.stc.port = 50011
+coin.stc.accesstoken = 86349b9c59f85a97f2bbce808d200d60
+</code></pre>
+<p>使用下面方式使自定义配置文件使用profile</p>
+<pre><code class="language-java">@PropertySource(&quot;classpath:config/coins${spring.profiles.active}.properties&quot;)
+</code></pre>
+<p>测试配置是否导入</p>
+<pre><code class="language-java">@RunWith(SpringRunner.class)
+@SpringBootTest
+public class StcJSONRPCClientTest {
+
+    @Autowired
+    private StcProperties stcProperties;
+
+    @Test
+    public void getClient() {
+        System.out.println(stcProperties.getAccesstoken());
+        assertEquals(&quot;86349b9c59f85a97f2bbce808d200d60&quot;,stcProperties.getAccesstoken());
+    }
+}
+</code></pre>
+<p>参考<br>
+<a href="https://stackoverflow.com/questions/43179240/how-to-add-profile-specific-properties-files-when-i-have-custom-name-to-my-prope">*<strong>How to add profile specific properties files when I have custom name to my property file</strong></a><br>
+<a href="https://stackoverflow.com/questions/38042035/springboot-not-loading-application-dev-properties-file">Springboot not loading application.dev.properties file<br>
+</a><br>
+<a href="https://blog.csdn.net/zsl129/article/details/52880798">Springboot 之 自定义配置文件及读取配置文件</a><br>
+<a href="https://stackoverflow.com/questions/41263105/how-to-load-property-file-based-on-spring-profiles">*<strong>How to load property file based on spring profiles</strong></a><br>
+<a href="https://blog.csdn.net/qq_29614459/article/details/71486708">SpringBoot 读取配置文件及profiles切换配置文件</a><br>
+<a href="https://juejin.im/post/5a9be3cb51882555627cbc1f">*<strong>深入Spring Boot (三)：Properties属性配置文件使用详解</strong></a><br>
+<a href="https://blog.csdn.net/u012100371/article/details/78081634">spring boot 多环境配置读取属性文件</a></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[React Native遇到的坑]]></title>
+        <id>https://xigaohu.github.io/post/react-native遇到的坑</id>
+        <link href="https://xigaohu.github.io/post/react-native遇到的坑">
+        </link>
+        <updated>2018-08-30T23:29:53.000Z</updated>
+        <content type="html"><![CDATA[<ol>
+<li>andorid的文件里面需要添加local.properties <a href="https://stackoverflow.com/questions/32634352/react-native-android-build-failed-sdk-location-not-found">链接</a><pre><code>1. Go to your React native Project -&gt; Android
+2. Create a file local.properties
+3. Open the file
+4. paste your Android SDK path like below
+
+in Windows sdk.dir = C:\\Users\\USERNAME\\AppData\\Local\\Android\\sdk
+in macOS sdk.dir = /Users/USERNAME/Library/Android/sdk
+in linux sdk.dir = /home/USERNAME/Android/Sdk
+Replace USERNAME with your user name
+</code></pre>
+</li>
+<li><s>先用AS创建一个hello world应用，否则会出现<code>Building and installing the app on the device (cd android &amp;&amp; gradlew.bat installDebug</code>然后开始下载gradle，但是因为网络问题，一直无法下载完成</s>不清楚什么原因，第一天一直无法下载完成，但是第二天用AS创建一个项目后，一会就下载完成了，可能之间没有关系</li>
+<li>如果遇到 <code>http://localhost:8081</code> 502的错误,可能是因为开了代理的问题,代理无法识别<code>localhost</code>作为直接代理</li>
+<li>远程调试可能需要修改Dev settings &gt; Debug server host &amp; port for device和执行命令<code>adb reverse tcp:8081 tcp:8081</code></li>
+<li>使用 <code>npm i -g typescript</code>和<code>npm install @types/react-native</code>后可以使用自动导入(vscode)</li>
+<li>添加<code>.npmrc</code>文件并使用以下配置来加快速度<pre><code>sass_binary_site=https://npm.taobao.org/mirrors/node-sass/  
+registry=https://registry.npm.taobao.org
+</code></pre>
+</li>
+<li>使用<code>yarn add package-name@1.2.3</code>来安装指定版本, <strong>parkage@^4.0.0</strong>表示4.x.x的版本都可以兼容, <strong>package@~4.0.0</strong>表示4.0.x都可以兼容</li>
+</ol>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[golang环境设置]]></title>
+        <id>https://xigaohu.github.io/post/golang环境设置</id>
+        <link href="https://xigaohu.github.io/post/golang环境设置">
+        </link>
+        <updated>2018-08-30T09:50:45.000Z</updated>
+        <content type="html"><![CDATA[<ul>
+<li>
+<p>goalng下载地址 <a href="https://dl.google.com/go/go1.11.linux-amd64.tar.gz">https://dl.google.com/go/go1.11.linux-amd64.tar.gz</a></p>
+</li>
+<li>
+<p>解压 <code>tar -C /usr/local -xzf go$VERSION.$OS-$ARCH.tar.gz</code> <strong>请使用root权限</strong></p>
+</li>
+<li>
+<p>配置go环境变量 <code>export PATH=$PATH:/usr/local/go/bin</code></p>
+</li>
+<li>
+<p>测试go可用 <code>go version</code></p>
+</li>
+<li>
+<p>添加GOPATH <code>export GOPATH=/home/go</code></p>
+</li>
+<li>
+<p>添加go bin <code>export PATH=$PATH:/home/go/bin</code></p>
+</li>
+<li>
+<p>安装glide <code>curl https://glide.sh/get | sh</code></p>
+</li>
+</ul>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[zec的安装]]></title>
+        <id>https://xigaohu.github.io/post/zec的安装</id>
+        <link href="https://xigaohu.github.io/post/zec的安装">
+        </link>
+        <updated>2018-07-19T12:34:39.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="问题1-glibcxx_3420">问题1 GLIBCXX_3.4.20</h3>
+<pre><code>/lib64/libstdc++.so.6: version `GLIBCXX_3.4.20' not found
+</code></pre>
+<p>运行下面的命令，发现时少了3.4.20</p>
+<pre><code>[root@localhost src]# strings /usr/lib64/libstdc++.so.6 | grep GLIBCXX
+GLIBCXX_3.4
+GLIBCXX_3.4.1
+GLIBCXX_3.4.2
+GLIBCXX_3.4.3
+GLIBCXX_3.4.4
+GLIBCXX_3.4.5
+GLIBCXX_3.4.6
+GLIBCXX_3.4.7
+GLIBCXX_3.4.8
+GLIBCXX_3.4.9
+GLIBCXX_3.4.10
+GLIBCXX_3.4.11
+GLIBCXX_3.4.12
+GLIBCXX_3.4.13
+GLIBCXX_3.4.14
+GLIBCXX_3.4.15
+GLIBCXX_3.4.16
+GLIBCXX_3.4.17
+GLIBCXX_3.4.18
+GLIBCXX_3.4.19
+GLIBCXX_DEBUG_MESSAGE_LENGTH
+</code></pre>
+<ul>
+<li>先安装gcc</li>
+</ul>
+<pre><code>wget https://ftp.gnu.org/gnu/gcc/gcc-8.1.0/gcc-8.1.0.tar.gz
+//解压
+//required libraries:
+yum install libmpc-devel mpfr-devel gmp-devel
+
+yum install zlib-devel*
+
+./configure --with-system-zlib --disable-multilib --enable-languages=c,c++
+
+make -j 8 &lt;== this may take around 70 minutes or less to finish with 8 threads
+              (depending on your cpu speed)
+
+make install
+</code></pre>
+<p>参考stackoverflow文章<br>
+<a href="https://stackoverflow.com/questions/36327805/how-to-install-gcc-5-3-with-yum-on-centos-7-2">How to Install gcc 5.3 with yum on CentOS 7.2</a><br>
+然后找到libstdc++.so.6.0.25</p>
+<p><code>find / -name libstdc++.so.6*</code></p>
+<ul>
+<li>替换原来的libstdc++.so.6</li>
+</ul>
+<pre><code>cp /usr/local/lib64/libstdc++.so.6.0.21 /usr/lib64/
+cd /usr/lib64/
+rm -f libstdc++.so.6
+ln -s libstdc++.so.6.0.21 libstdc++.so.6
+</code></pre>
+<h3 id="问题2-没有glibc_218">问题2 没有glibc_2.18</h3>
+<pre><code>/lib64/libc.so.6: version `GLIBC_2.18' not found (required by /lib64/libstdc++.so.6)
+</code></pre>
+<ul>
+<li>安装</li>
+</ul>
+<pre><code>curl -O http://ftp.gnu.org/gnu/glibc/glibc-2.18.tar.gz
+tar zxf glibc-2.18.tar.gz 
+cd glibc-2.18/
+mkdir build
+cd build/
+../configure --prefix=/usr
+make -j 4
+make install
+</code></pre>
+<p><a href="https://www.jianshu.com/p/92c7a042d8ba">参考链接</a></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[supervisor的使用]]></title>
+        <id>https://xigaohu.github.io/post/supervisor的使用</id>
+        <link href="https://xigaohu.github.io/post/supervisor的使用">
+        </link>
+        <updated>2018-06-25T14:59:44.000Z</updated>
+        <content type="html"><![CDATA[<p>supervisor是一个用 Python 写的进程管理工具，可以很方便的用来启动、重启、关闭进程（不仅仅是 Python 进程）。除了对单个进程的控制，还可以同时启动、关闭多个进程，比如很不幸的服务器出问题导致所有应用程序都被杀死，此时可以用 supervisor 同时启动所有应用程序而不是一个一个地敲命令启动。</p>
+<h4 id="安装">安装</h4>
+<p>可以使用</p>
+<p><code>pip install supervisor</code><br>
+<code>pip install git+https://github.com/Supervisor/supervisor</code> python3版本</p>
+<p>或者用</p>
+<p><code>yum install supervisor</code></p>
+<h4 id="配置">配置</h4>
+<p>获取配置文件</p>
+<p><code>echo_supervisord_conf &gt; /etc/supervisord.conf</code><br>
+如果出现<code>echo_supervisord_conf: command not **found**</code> 则可能需要输入全路径，使用<br>
+<code>find / -name supervisor*</code>找到路径</p>
+<pre><code class="language-ini">[unix_http_server]
+file=/tmp/supervisor.sock   ; UNIX socket 文件，supervisorctl 会使用
+;chmod=0700                 ; socket 文件的 mode，默认是 0700
+;chown=nobody:nogroup       ; socket 文件的 owner，格式： uid:gid
+
+;[inet_http_server]         ; HTTP 服务器，提供 web 管理界面
+;port=127.0.0.1:9001        ; Web 管理后台运行的 IP 和端口，如果开放到公网，需要注意安全性
+;username=user              ; 登录管理后台的用户名
+;password=123               ; 登录管理后台的密码
+
+[supervisord]
+logfile=/tmp/supervisord.log ; 日志文件，默认是 $CWD/supervisord.log
+logfile_maxbytes=50MB        ; 日志文件大小，超出会 rotate，默认 50MB
+logfile_backups=10           ; 日志文件保留备份数量默认 10
+loglevel=info                ; 日志级别，默认 info，其它: debug,warn,trace
+pidfile=/tmp/supervisord.pid ; pid 文件
+nodaemon=false               ; 是否在前台启动，默认是 false，即以 daemon 的方式启动
+minfds=1024                  ; 可以打开的文件描述符的最小值，默认 1024
+minprocs=200                 ; 可以打开的进程数的最小值，默认 200
+
+; the below section must remain in the config file for RPC
+; (supervisorctl/web interface) to work, additional interfaces may be
+; added by defining them in separate rpcinterface: sections
+[rpcinterface:supervisor]
+supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface
+
+[supervisorctl]
+serverurl=unix:///tmp/supervisor.sock ; 通过 UNIX socket 连接 supervisord，路径与 unix_http_server 部分的 file 一致
+;serverurl=http://127.0.0.1:9001 ; 通过 HTTP 的方式连接 supervisord
+
+; 包含其他的配置文件
+[include]
+files = relative/directory/*.ini    ; 可以是 *.conf 或 *.ini 用绝对路径
+</code></pre>
+<h4 id="program配置">program配置</h4>
+<p>将include修改为</p>
+<pre><code class="language-ini">[include]
+files = /etc/supervisord.d/*.ini
+</code></pre>
+<p>在对应的目录下面创建文件</p>
+<pre><code class="language-ini">[supervisord]
+environment=PYTHONIOENCODING=utf-8,,FLASK_CONFIG=&quot;TESTING&quot;
+[program:batt_allcoin]
+directory = /home/app/batt_eth_allcoin ; 程序的启动目录
+command = python -B -u batt_eth_allcoin.py  ; 启动命令
+autostart = false    ; 在 supervisord 启动的时候也自动启动
+startsecs = 5        ; 启动 5 秒后没有异常退出，就当作已经正常启动了
+autorestart = false   ; 程序异常退出后自动重启
+startretries = 3 
+redirect_stderr = true  ; 把 stderr 重定向到 stdout，默认 false
+stdout_logfile_maxbytes = 5MB  ; stdout 日志文件大小，默认 50MB
+stdout_logfile_backups = 20     ; stdout 日志文件备份数
+stdout_logfile = /home/app/batt_eth_allcoin/debug.log
+
+</code></pre>
+<p>另一个配置文件</p>
+<pre><code class="language-ini">[program:binance]
+directory = /home/app/coins/multi_coin ; 程序的启动目录
+command = python2 -B -u imitate_order.py  ; 启动命令
+autostart = false    ; 在 supervisord 启动的时候也自动启动
+startsecs = 5        ; 启动 5 秒后没有异常退出，就当作已经正常启动了
+autorestart = false   ; 程序异常退出后自动重启
+startretries = 3 
+redirect_stderr = true  ; 把 stderr 重定向到 stdout，默认 false
+stdout_logfile_maxbytes = 5MB  ; stdout 日志文件大小，默认 50MB
+stdout_logfile_backups = 20     ; stdout 日志文件备份数
+stdout_logfile = /home/app/coins/multi_coin/debug.log
+</code></pre>
+<h4 id="启动">启动</h4>
+<p>启动supervisor</p>
+<p><code>supervisord -c /etc/supervisord.conf</code><br>
+如果supervisorctl不存在，就找到路径使用 <code>ln -s /usr/local/python3/bin/supervisorctl</code> 添加软链接 <code>/usr/bin/supervisorctl</code></p>
+<p>启动进程</p>
+<pre><code>$ supervisorctl status
+$ supervisorctl stop usercenter
+$ supervisorctl start usercenter
+$ supervisorctl restart usercenter
+$ supervisorctl reread
+$ supervisorctl update
+</code></pre>
+<p><em>注意</em><br>
+在使用supervisorctl 时，如果supervisorctl 无法查找到配置文件，</p>
+<p>supervisorctl  无法获知与supervisord 该如何通讯，你可能会看到如下错误</p>
+<pre><code>root@xxx:/home/operation# supervisorctl status  
+http://localhost:9001 refused connection
+</code></pre>
+<p>处理解决办法：<a href="http://blog.51cto.com/finalbattle/1868454">supervisorctl配置文件简介</a></p>
+<pre><code>root@xxx:/home/operation# supervisorctl -c /path/to/supervisord.conf status  
+root@xxx:/home/operation# ln -s /path/to/supervisord.conf /etc/
+</code></pre>
+<p><a href="http://liyangliang.me/posts/2015/06/using-supervisor/">使用 supervisor 管理进程</a></p>
+<p><a href="https://stackoverflow.com/questions/12900402/supervisor-and-environment-variables">Supervisor and Environment Variables<br>
+</a></p>
+<p><a href="https://www.jianshu.com/p/0226b7c59ae2">Supervisor的作用与配置</a></p>
+<p><a href="https://blog.csdn.net/orangleliu/article/details/45057377">[supervisor] 使用小记(入门教程)</a></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[mvn导入本地包]]></title>
+        <id>https://xigaohu.github.io/post/mvn导入本地包</id>
+        <link href="https://xigaohu.github.io/post/mvn导入本地包">
+        </link>
+        <updated>2018-05-29T03:20:22.000Z</updated>
+        <content type="html"><![CDATA[<p>直接执行mvn即可</p>
+<pre><code>mvn install:install-file -Dfile=bitcoin-json-rpc-client-1.1.jar -DgroupId=com.azazar -DartifactId=bitcoin-json-rpc-client -Dversion=1.1 -Dpackaging=jar
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[添加第二个git账号]]></title>
+        <id>https://xigaohu.github.io/post/添加第二个git账号</id>
+        <link href="https://xigaohu.github.io/post/添加第二个git账号">
+        </link>
+        <updated>2018-05-25T05:13:39.000Z</updated>
+        <content type="html"><![CDATA[<h4 id="1-生成公钥私钥">1. 生成公钥私钥</h4>
+<pre><code>ssh-keygen -t rsa -C &quot;gaohubin@163.com&quot;  
+</code></pre>
+<p>输入 <strong>自定义</strong>的文件名 id_rsa_lab，然后会生成两个文件 <strong>id_rsa_lab.pub</strong>与 <strong>id_rsa_lab</strong><br>
+然后密码不输入直接回车两次，这样虽然有点不安全，但以后不用输密码了</p>
+<h4 id="2-将公钥放入gitlab的ssh-key的设置里点击add-key">2. 将公钥放入gitlab的SSH key的设置里，点击add key</h4>
+<figure data-type="image" tabindex="1"><img src="addkey.png" alt="" loading="lazy"></figure>
+<h4 id="3-在ssh文件夹下面添加无后缀的config文件">3. 在.ssh文件夹下面添加无后缀的config文件</h4>
+<p>第一行是域名地址的别名<br>
+第二行是IP 或者域名<br>
+第三行是 用户名可以改<br>
+第四行是 私钥位置</p>
+<pre><code>Host gitlab              
+Hostname 202.182.104.28
+User git
+IdentityFile C:\Users\gao\.ssh\id_rsa_lab
+</code></pre>
+<p>参考: <a href="https://www.cnblogs.com/fanbi/p/7825746.html">一台电脑，两个及多个git账号配置</a></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[python logging简单使用]]></title>
+        <id>https://xigaohu.github.io/post/python-logging简单使用</id>
+        <link href="https://xigaohu.github.io/post/python-logging简单使用">
+        </link>
+        <updated>2018-05-20T06:31:39.000Z</updated>
+        <content type="html"><![CDATA[<p>logging一共有三种4种配置形式</p>
+<ul>
+<li>基础型 basicconfig</li>
+<li>代码型</li>
+<li>字典型</li>
+<li>文件ini型</li>
+</ul>
+<p>只使用了代码型</p>
+<pre><code class="language-python">def custom_formatTime(record, datefmt=None):
+    return (datetime.datetime.utcnow() + datetime.timedelta(hours=8)).strftime(u&quot;%Y-%m-%d %H:%M:%S&quot;)
+
+# 通过下面的方式进行简单配置输出方式与日志级别
+logger = logging.getLogger(&quot;binance_coin&quot;)
+# 写入日志文件
+handler_file = logging.handlers\
+    .RotatingFileHandler(&quot;logs/debug.log&quot;, maxBytes=1024*1024, backupCount = 50,encoding = &quot;UTF-8&quot;)#FileHandler(&quot;test.log&quot;)
+handler_file.setLevel(logging.INFO)
+handler_error_file = logging.handlers\
+    .RotatingFileHandler(&quot;logs/error.log&quot;, maxBytes=1024*1024, backupCount = 10,encoding = &quot;UTF-8&quot;)#FileHandler(&quot;test.log&quot;)
+handler_error_file.setLevel(logging.ERROR)
+# 打印日志文件到console
+handler_console = logging.StreamHandler()
+# 格式化器
+formatter = logging.Formatter(
+    &quot;%(asctime)s %(name)-12s %(levelname)-8s %(message)s&quot;)
+formatter.formatTime = custom_formatTime
+# 添加格式化到控制器
+handler_console.setFormatter(formatter)
+handler_file.setFormatter(formatter)
+handler_error_file.setFormatter(formatter)
+# 添加处理器
+logger.addHandler(handler_console)
+logger.addHandler(handler_file)
+logger.addHandler(handler_error_file)
+# log级别
+logger.setLevel(logging.INFO)
+# 进行记录
+logger.debug('often makes a very good meal of %s', 'visiting tourists')
+</code></pre>
+<h4 id="实现的需求">实现的需求</h4>
+<ol>
+<li>日志分割，使用RotatingFileHandler处理器设定了maxBytes，在日志文件大小为1M的时候就会将日志文件重命名为<strong>debug.log.1</strong>,然后新建一个<strong>debug.log</strong>,第二次的时候将<strong>debug.log.1</strong>-&gt;<strong>debug.log.2</strong>, 每次都会这样依次更改名字,直到日志文件数量到达backupCount的限制,将最老的一个删除以维持最多50个的日志文件。logging也可以使用时间分割</li>
+<li>日志文件的编码, 需要在处理器里面指定<code>encoding = &quot;UTF-8&quot;</code>来避免出现日志编码错误</li>
+<li>自定义时间，重写了formatter.formatTime来设定打印出来的时间始终是utc+8</li>
+<li>分级别输出，info以上的日志都会用handler_file输出到<strong>debug.log</strong>，error以上的日志都会输出到<strong>error.log</strong></li>
+</ol>
+<p>参考链接 <a href="http://pythonguidecn.readthedocs.io/zh/latest/writing/logging.html">日志（Logging） — The Hitchhiker's Guide to Python</a></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[如何安装Python3]]></title>
+        <id>https://xigaohu.github.io/post/centos7如何安装Python3</id>
+        <link href="https://xigaohu.github.io/post/centos7如何安装Python3">
+        </link>
+        <updated>2018-05-17T23:20:30.000Z</updated>
+        <content type="html"><![CDATA[<ol>
+<li>
+<p>编译环境准备</p>
+<pre><code>yum groupinstall 'Development Tools'
+yum install zlib-devel bzip2-devel openssl-devel ncurese-devel
+</code></pre>
+</li>
+<li>
+<p>下载python3.6.5代码包</p>
+<pre><code>wget https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tar.xz
+</code></pre>
+<p>可以在<strong>https://www.python.org/ftp/python/</strong> 里面查找需要用的版本</p>
+</li>
+<li>
+<p>编译</p>
+<pre><code>tar Jxvf Python-3.6.5.tar.xz
+cd Python-3.6.5
+./configure --prefix=/usr/local/python3
+make &amp;&amp; make install
+</code></pre>
+</li>
+<li>
+<p>更换Python版本</p>
+<ul>
+<li>备份旧版本<br>
+<code>mv /usr/bin/python /usr/bin/python2.7</code></li>
+<li>新建指向新版本 Python 以及 pip 的软连接<pre><code>ln -s /usr/local/python3/bin/python3.6 /usr/bin/python
+ln -s /usr/local/python3/bin/pip3 /usr/bin/pip  
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>更新yum相关设置</p>
+<p>打开文件</p>
+<pre><code>vi /usr/bin/yum
+</code></pre>
+<p>将第一行修改为</p>
+<pre><code>#!/usr/bin/python2.7
+</code></pre>
+<p>若出现错误</p>
+<pre><code>File &quot;/usr/libexec/urlgrabber-ext-down&quot;, line 28
+</code></pre>
+<p>将/usr/libexec/urlgrabber-ext-down的第一行修改</p>
+<p><a href="%22https://www.jianshu.com/p/8bd6e0695d7f%22">参考链接</a></p>
+</li>
+</ol>
+<h4 id="其他尝试">其他尝试</h4>
+<p>若第4步改为</p>
+<pre><code>ln -s /usr/local/python3/bin/python3.6 /usr/bin/python3
+ln -s /usr/local/python3/bin/pip3 /usr/bin/pip3
+</code></pre>
+<p>python 将不用修改其他的内容，但是在使用python3 安装的库时候，例如使用gunicorn,必须使用 <code>python3 -m gunicorn ...</code> 不能直接用gunicorn,因为默认是使用python(当前是python2)进行执行的</p>
+<p>还是要等centos进行支持呀</p>
 ]]></content>
     </entry>
 </feed>

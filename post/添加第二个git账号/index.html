@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>关于 | Gridea</title>
+<title>添加第二个git账号 | Gridea</title>
 <meta name="description" content="温故而知新" />
 <link rel="shortcut icon" href="https://xigaohu.github.io/favicon.ico?v=1579575107787">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -73,41 +73,59 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              关于
+              添加第二个git账号
             </h2>
             <div class="post-info">
               <span>
-                2019-01-25
+                2018-05-25
               </span>
               <span>
                 1 min read
               </span>
               
+                <a href="https://xigaohu.github.io/tag/rR66pcVPsC" class="post-tag">
+                  # cvs
+                </a>
+              
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<p>1</p>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<p>1</p>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<p>1</p>
-<h2 id="联系我呀">📬 联系我呀</h2>
-<p>1</p>
+                <h4 id="1-生成公钥私钥">1. 生成公钥私钥</h4>
+<pre><code>ssh-keygen -t rsa -C &quot;gaohubin@163.com&quot;  
+</code></pre>
+<p>输入 <strong>自定义</strong>的文件名 id_rsa_lab，然后会生成两个文件 <strong>id_rsa_lab.pub</strong>与 <strong>id_rsa_lab</strong><br>
+然后密码不输入直接回车两次，这样虽然有点不安全，但以后不用输密码了</p>
+<h4 id="2-将公钥放入gitlab的ssh-key的设置里点击add-key">2. 将公钥放入gitlab的SSH key的设置里，点击add key</h4>
+<figure data-type="image" tabindex="1"><img src="addkey.png" alt="" loading="lazy"></figure>
+<h4 id="3-在ssh文件夹下面添加无后缀的config文件">3. 在.ssh文件夹下面添加无后缀的config文件</h4>
+<p>第一行是域名地址的别名<br>
+第二行是IP 或者域名<br>
+第三行是 用户名可以改<br>
+第四行是 私钥位置</p>
+<pre><code>Host gitlab              
+Hostname 202.182.104.28
+User git
+IdentityFile C:\Users\gao\.ssh\id_rsa_lab
+</code></pre>
+<p>参考: <a href="https://www.cnblogs.com/fanbi/p/7825746.html">一台电脑，两个及多个git账号配置</a></p>
 
               </div>
               <div class="toc-container">
                 <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li><a href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99">🏠 关于本站</a></li>
-<li><a href="#%E5%8D%9A%E4%B8%BB%E6%98%AF%E8%B0%81">👨‍💻 博主是谁</a></li>
-<li><a href="#%E5%85%B4%E8%B6%A3%E7%88%B1%E5%A5%BD">⛹ 兴趣爱好</a></li>
-<li><a href="#%E8%81%94%E7%B3%BB%E6%88%91%E5%91%80">📬 联系我呀</a></li>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#1-%E7%94%9F%E6%88%90%E5%85%AC%E9%92%A5%E7%A7%81%E9%92%A5">1. 生成公钥私钥</a></li>
+<li><a href="#2-%E5%B0%86%E5%85%AC%E9%92%A5%E6%94%BE%E5%85%A5gitlab%E7%9A%84ssh-key%E7%9A%84%E8%AE%BE%E7%BD%AE%E9%87%8C%E7%82%B9%E5%87%BBadd-key">2. 将公钥放入gitlab的SSH key的设置里，点击add key</a></li>
+<li><a href="#3-%E5%9C%A8ssh%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%E9%9D%A2%E6%B7%BB%E5%8A%A0%E6%97%A0%E5%90%8E%E7%BC%80%E7%9A%84config%E6%96%87%E4%BB%B6">3. 在.ssh文件夹下面添加无后缀的config文件</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -120,9 +138,9 @@
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://xigaohu.github.io/post/spring-boot自定义配置文件">
+            <a href="https://xigaohu.github.io/post/python-logging简单使用">
               <h3 class="post-title">
-                spring boot自定义配置文件
+                python logging简单使用
               </h3>
             </a>
           </div>

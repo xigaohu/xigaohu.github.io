@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>关于 | Gridea</title>
+<title>zec的安装 | Gridea</title>
 <meta name="description" content="温故而知新" />
 <link rel="shortcut icon" href="https://xigaohu.github.io/favicon.ico?v=1579575107787">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -73,41 +73,104 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              关于
+              zec的安装
             </h2>
             <div class="post-info">
               <span>
-                2019-01-25
+                2018-07-19
               </span>
               <span>
-                1 min read
+                2 min read
               </span>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<p>1</p>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<p>1</p>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<p>1</p>
-<h2 id="联系我呀">📬 联系我呀</h2>
-<p>1</p>
+                <h3 id="问题1-glibcxx_3420">问题1 GLIBCXX_3.4.20</h3>
+<pre><code>/lib64/libstdc++.so.6: version `GLIBCXX_3.4.20' not found
+</code></pre>
+<p>运行下面的命令，发现时少了3.4.20</p>
+<pre><code>[root@localhost src]# strings /usr/lib64/libstdc++.so.6 | grep GLIBCXX
+GLIBCXX_3.4
+GLIBCXX_3.4.1
+GLIBCXX_3.4.2
+GLIBCXX_3.4.3
+GLIBCXX_3.4.4
+GLIBCXX_3.4.5
+GLIBCXX_3.4.6
+GLIBCXX_3.4.7
+GLIBCXX_3.4.8
+GLIBCXX_3.4.9
+GLIBCXX_3.4.10
+GLIBCXX_3.4.11
+GLIBCXX_3.4.12
+GLIBCXX_3.4.13
+GLIBCXX_3.4.14
+GLIBCXX_3.4.15
+GLIBCXX_3.4.16
+GLIBCXX_3.4.17
+GLIBCXX_3.4.18
+GLIBCXX_3.4.19
+GLIBCXX_DEBUG_MESSAGE_LENGTH
+</code></pre>
+<ul>
+<li>先安装gcc</li>
+</ul>
+<pre><code>wget https://ftp.gnu.org/gnu/gcc/gcc-8.1.0/gcc-8.1.0.tar.gz
+//解压
+//required libraries:
+yum install libmpc-devel mpfr-devel gmp-devel
+
+yum install zlib-devel*
+
+./configure --with-system-zlib --disable-multilib --enable-languages=c,c++
+
+make -j 8 &lt;== this may take around 70 minutes or less to finish with 8 threads
+              (depending on your cpu speed)
+
+make install
+</code></pre>
+<p>参考stackoverflow文章<br>
+<a href="https://stackoverflow.com/questions/36327805/how-to-install-gcc-5-3-with-yum-on-centos-7-2">How to Install gcc 5.3 with yum on CentOS 7.2</a><br>
+然后找到libstdc++.so.6.0.25</p>
+<p><code>find / -name libstdc++.so.6*</code></p>
+<ul>
+<li>替换原来的libstdc++.so.6</li>
+</ul>
+<pre><code>cp /usr/local/lib64/libstdc++.so.6.0.21 /usr/lib64/
+cd /usr/lib64/
+rm -f libstdc++.so.6
+ln -s libstdc++.so.6.0.21 libstdc++.so.6
+</code></pre>
+<h3 id="问题2-没有glibc_218">问题2 没有glibc_2.18</h3>
+<pre><code>/lib64/libc.so.6: version `GLIBC_2.18' not found (required by /lib64/libstdc++.so.6)
+</code></pre>
+<ul>
+<li>安装</li>
+</ul>
+<pre><code>curl -O http://ftp.gnu.org/gnu/glibc/glibc-2.18.tar.gz
+tar zxf glibc-2.18.tar.gz 
+cd glibc-2.18/
+mkdir build
+cd build/
+../configure --prefix=/usr
+make -j 4
+make install
+</code></pre>
+<p><a href="https://www.jianshu.com/p/92c7a042d8ba">参考链接</a></p>
 
               </div>
               <div class="toc-container">
                 <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li><a href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99">🏠 关于本站</a></li>
-<li><a href="#%E5%8D%9A%E4%B8%BB%E6%98%AF%E8%B0%81">👨‍💻 博主是谁</a></li>
-<li><a href="#%E5%85%B4%E8%B6%A3%E7%88%B1%E5%A5%BD">⛹ 兴趣爱好</a></li>
-<li><a href="#%E8%81%94%E7%B3%BB%E6%88%91%E5%91%80">📬 联系我呀</a></li>
+<li>
+<ul>
+<li><a href="#%E9%97%AE%E9%A2%981-glibcxx_3420">问题1 GLIBCXX_3.4.20</a></li>
+<li><a href="#%E9%97%AE%E9%A2%982-%E6%B2%A1%E6%9C%89glibc_218">问题2 没有glibc_2.18</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -120,9 +183,9 @@
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://xigaohu.github.io/post/spring-boot自定义配置文件">
+            <a href="https://xigaohu.github.io/post/supervisor的使用">
               <h3 class="post-title">
-                spring boot自定义配置文件
+                supervisor的使用
               </h3>
             </a>
           </div>

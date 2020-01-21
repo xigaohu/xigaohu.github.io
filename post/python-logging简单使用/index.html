@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>关于 | Gridea</title>
+<title>python logging简单使用 | Gridea</title>
 <meta name="description" content="温故而知新" />
 <link rel="shortcut icon" href="https://xigaohu.github.io/favicon.ico?v=1579575107787">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -73,41 +73,86 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              关于
+              python logging简单使用
             </h2>
             <div class="post-info">
               <span>
-                2019-01-25
+                2018-05-20
               </span>
               <span>
-                1 min read
+                3 min read
               </span>
+              
+                <a href="https://xigaohu.github.io/tag/OFsPIa8FZj" class="post-tag">
+                  # python
+                </a>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<p>1</p>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<p>1</p>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<p>1</p>
-<h2 id="联系我呀">📬 联系我呀</h2>
-<p>1</p>
+                <p>logging一共有三种4种配置形式</p>
+<ul>
+<li>基础型 basicconfig</li>
+<li>代码型</li>
+<li>字典型</li>
+<li>文件ini型</li>
+</ul>
+<p>只使用了代码型</p>
+<pre><code class="language-python">def custom_formatTime(record, datefmt=None):
+    return (datetime.datetime.utcnow() + datetime.timedelta(hours=8)).strftime(u&quot;%Y-%m-%d %H:%M:%S&quot;)
+
+# 通过下面的方式进行简单配置输出方式与日志级别
+logger = logging.getLogger(&quot;binance_coin&quot;)
+# 写入日志文件
+handler_file = logging.handlers\
+    .RotatingFileHandler(&quot;logs/debug.log&quot;, maxBytes=1024*1024, backupCount = 50,encoding = &quot;UTF-8&quot;)#FileHandler(&quot;test.log&quot;)
+handler_file.setLevel(logging.INFO)
+handler_error_file = logging.handlers\
+    .RotatingFileHandler(&quot;logs/error.log&quot;, maxBytes=1024*1024, backupCount = 10,encoding = &quot;UTF-8&quot;)#FileHandler(&quot;test.log&quot;)
+handler_error_file.setLevel(logging.ERROR)
+# 打印日志文件到console
+handler_console = logging.StreamHandler()
+# 格式化器
+formatter = logging.Formatter(
+    &quot;%(asctime)s %(name)-12s %(levelname)-8s %(message)s&quot;)
+formatter.formatTime = custom_formatTime
+# 添加格式化到控制器
+handler_console.setFormatter(formatter)
+handler_file.setFormatter(formatter)
+handler_error_file.setFormatter(formatter)
+# 添加处理器
+logger.addHandler(handler_console)
+logger.addHandler(handler_file)
+logger.addHandler(handler_error_file)
+# log级别
+logger.setLevel(logging.INFO)
+# 进行记录
+logger.debug('often makes a very good meal of %s', 'visiting tourists')
+</code></pre>
+<h4 id="实现的需求">实现的需求</h4>
+<ol>
+<li>日志分割，使用RotatingFileHandler处理器设定了maxBytes，在日志文件大小为1M的时候就会将日志文件重命名为<strong>debug.log.1</strong>,然后新建一个<strong>debug.log</strong>,第二次的时候将<strong>debug.log.1</strong>-&gt;<strong>debug.log.2</strong>, 每次都会这样依次更改名字,直到日志文件数量到达backupCount的限制,将最老的一个删除以维持最多50个的日志文件。logging也可以使用时间分割</li>
+<li>日志文件的编码, 需要在处理器里面指定<code>encoding = &quot;UTF-8&quot;</code>来避免出现日志编码错误</li>
+<li>自定义时间，重写了formatter.formatTime来设定打印出来的时间始终是utc+8</li>
+<li>分级别输出，info以上的日志都会用handler_file输出到<strong>debug.log</strong>，error以上的日志都会输出到<strong>error.log</strong></li>
+</ol>
+<p>参考链接 <a href="http://pythonguidecn.readthedocs.io/zh/latest/writing/logging.html">日志（Logging） — The Hitchhiker's Guide to Python</a></p>
 
               </div>
               <div class="toc-container">
                 <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li><a href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99">🏠 关于本站</a></li>
-<li><a href="#%E5%8D%9A%E4%B8%BB%E6%98%AF%E8%B0%81">👨‍💻 博主是谁</a></li>
-<li><a href="#%E5%85%B4%E8%B6%A3%E7%88%B1%E5%A5%BD">⛹ 兴趣爱好</a></li>
-<li><a href="#%E8%81%94%E7%B3%BB%E6%88%91%E5%91%80">📬 联系我呀</a></li>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E5%AE%9E%E7%8E%B0%E7%9A%84%E9%9C%80%E6%B1%82">实现的需求</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -120,9 +165,9 @@
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://xigaohu.github.io/post/spring-boot自定义配置文件">
+            <a href="https://xigaohu.github.io/post/centos7如何安装Python3">
               <h3 class="post-title">
-                spring boot自定义配置文件
+                如何安装Python3
               </h3>
             </a>
           </div>
