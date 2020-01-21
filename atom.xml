@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://xigaohu.github.io</id>
     <title>xiaohu</title>
-    <updated>2020-01-21T03:11:54.068Z</updated>
+    <updated>2020-01-21T03:22:08.975Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://xigaohu.github.io"/>
     <link rel="self" href="https://xigaohu.github.io/atom.xml"/>
@@ -421,13 +421,12 @@ somefile.txt: ascii with confidence 1.0
 <p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
 </blockquote>
 <h2 id="关于本站">🏠 关于本站</h2>
-<p>1</p>
+<p>博客</p>
 <h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<p>1</p>
+<p>xiaohu</p>
 <h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<p>1</p>
+<p>coding</p>
 <h2 id="联系我呀">📬 联系我呀</h2>
-<p>1</p>
 ]]></content>
     </entry>
     <entry>
@@ -503,8 +502,16 @@ public class StcJSONRPCClientTest {
         <link href="https://xigaohu.github.io/post/react-native遇到的坑">
         </link>
         <updated>2018-08-30T23:29:53.000Z</updated>
+        <summary type="html"><![CDATA[<ol>
+<li>andorid的文件里面需要添加local.properties <a href="https://stackoverflow.com/questions/32634352/react-native-android-build-failed-sdk-location-not-found">链接</a></li>
+</ol>
+]]></summary>
         <content type="html"><![CDATA[<ol>
-<li>andorid的文件里面需要添加local.properties <a href="https://stackoverflow.com/questions/32634352/react-native-android-build-failed-sdk-location-not-found">链接</a><pre><code>1. Go to your React native Project -&gt; Android
+<li>andorid的文件里面需要添加local.properties <a href="https://stackoverflow.com/questions/32634352/react-native-android-build-failed-sdk-location-not-found">链接</a></li>
+</ol>
+<!-- more -->
+<pre><code>```
+1. Go to your React native Project -&gt; Android
 2. Create a file local.properties
 3. Open the file
 4. paste your Android SDK path like below
@@ -513,8 +520,9 @@ in Windows sdk.dir = C:\\Users\\USERNAME\\AppData\\Local\\Android\\sdk
 in macOS sdk.dir = /Users/USERNAME/Library/Android/sdk
 in linux sdk.dir = /home/USERNAME/Android/Sdk
 Replace USERNAME with your user name
+```
 </code></pre>
-</li>
+<ol start="2">
 <li><s>先用AS创建一个hello world应用，否则会出现<code>Building and installing the app on the device (cd android &amp;&amp; gradlew.bat installDebug</code>然后开始下载gradle，但是因为网络问题，一直无法下载完成</s>不清楚什么原因，第一天一直无法下载完成，但是第二天用AS创建一个项目后，一会就下载完成了，可能之间没有关系</li>
 <li>如果遇到 <code>http://localhost:8081</code> 502的错误,可能是因为开了代理的问题,代理无法识别<code>localhost</code>作为直接代理</li>
 <li>远程调试可能需要修改Dev settings &gt; Debug server host &amp; port for device和执行命令<code>adb reverse tcp:8081 tcp:8081</code></li>
@@ -533,9 +541,14 @@ registry=https://registry.npm.taobao.org
         <link href="https://xigaohu.github.io/post/golang环境设置">
         </link>
         <updated>2018-08-30T09:50:45.000Z</updated>
+        <summary type="html"><![CDATA[<ul>
+<li>goalng下载地址 <a href="https://dl.google.com/go/go1.11.linux-amd64.tar.gz">https://dl.google.com/go/go1.11.linux-amd64.tar.gz</a></li>
+</ul>
+]]></summary>
         <content type="html"><![CDATA[<ul>
 <li>
 <p>goalng下载地址 <a href="https://dl.google.com/go/go1.11.linux-amd64.tar.gz">https://dl.google.com/go/go1.11.linux-amd64.tar.gz</a></p>
+<!-- more -->
 </li>
 <li>
 <p>解压 <code>tar -C /usr/local -xzf go$VERSION.$OS-$ARCH.tar.gz</code> <strong>请使用root权限</strong></p>
@@ -644,7 +657,10 @@ make install
         <link href="https://xigaohu.github.io/post/supervisor的使用">
         </link>
         <updated>2018-06-25T14:59:44.000Z</updated>
+        <summary type="html"><![CDATA[<p>supervisor是一个用 Python 写的进程管理工具，可以很方便的用来启动、重启、关闭进程（不仅仅是 Python 进程）。除了对单个进程的控制，还可以同时启动、关闭多个进程，比如很不幸的服务器出问题导致所有应用程序都被杀死，此时可以用 supervisor 同时启动所有应用程序而不是一个一个地敲命令启动。</p>
+]]></summary>
         <content type="html"><![CDATA[<p>supervisor是一个用 Python 写的进程管理工具，可以很方便的用来启动、重启、关闭进程（不仅仅是 Python 进程）。除了对单个进程的控制，还可以同时启动、关闭多个进程，比如很不幸的服务器出问题导致所有应用程序都被杀死，此时可以用 supervisor 同时启动所有应用程序而不是一个一个地敲命令启动。</p>
+<!-- more -->
 <h4 id="安装">安装</h4>
 <p>可以使用</p>
 <p><code>pip install supervisor</code><br>
@@ -796,7 +812,10 @@ IdentityFile C:\Users\gao\.ssh\id_rsa_lab
         <link href="https://xigaohu.github.io/post/python-logging简单使用">
         </link>
         <updated>2018-05-20T06:31:39.000Z</updated>
+        <summary type="html"><![CDATA[<p>logging一共有三种4种配置形式</p>
+]]></summary>
         <content type="html"><![CDATA[<p>logging一共有三种4种配置形式</p>
+<!-- more -->
 <ul>
 <li>基础型 basicconfig</li>
 <li>代码型</li>

@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>xiaohu</title>
 <meta name="description" content="温故而知新" />
-<link rel="shortcut icon" href="https://xigaohu.github.io/favicon.ico?v=1579576229418">
+<link rel="shortcut icon" href="https://xigaohu.github.io/favicon.ico?v=1579576926788">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
@@ -24,7 +24,7 @@
       <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
         <i class="remixicon-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
         <a href="https://xigaohu.github.io">
-          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://xigaohu.github.io/images/avatar.png?v=1579576229418" alt="">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://xigaohu.github.io/images/avatar.png?v=1579576926788" alt="">
         </a>
         <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">xiaohu</h1>
       </div>
@@ -86,7 +86,11 @@
         
         <div class="post-content yue">
           <ol>
-<li>andorid的文件里面需要添加local.properties <a href="https://stackoverflow.com/questions/32634352/react-native-android-build-failed-sdk-location-not-found">链接</a><pre><code>1. Go to your React native Project -&gt; Android
+<li>andorid的文件里面需要添加local.properties <a href="https://stackoverflow.com/questions/32634352/react-native-android-build-failed-sdk-location-not-found">链接</a></li>
+</ol>
+<!-- more -->
+<pre><code>```
+1. Go to your React native Project -&gt; Android
 2. Create a file local.properties
 3. Open the file
 4. paste your Android SDK path like below
@@ -95,8 +99,9 @@ in Windows sdk.dir = C:\\Users\\USERNAME\\AppData\\Local\\Android\\sdk
 in macOS sdk.dir = /Users/USERNAME/Library/Android/sdk
 in linux sdk.dir = /home/USERNAME/Android/Sdk
 Replace USERNAME with your user name
+```
 </code></pre>
-</li>
+<ol start="2">
 <li><s>先用AS创建一个hello world应用，否则会出现<code>Building and installing the app on the device (cd android &amp;&amp; gradlew.bat installDebug</code>然后开始下载gradle，但是因为网络问题，一直无法下载完成</s>不清楚什么原因，第一天一直无法下载完成，但是第二天用AS创建一个项目后，一会就下载完成了，可能之间没有关系</li>
 <li>如果遇到 <code>http://localhost:8081</code> 502的错误,可能是因为开了代理的问题,代理无法识别<code>localhost</code>作为直接代理</li>
 <li>远程调试可能需要修改Dev settings &gt; Debug server host &amp; port for device和执行命令<code>adb reverse tcp:8081 tcp:8081</code></li>
