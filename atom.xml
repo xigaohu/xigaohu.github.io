@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://stoneskipping.info</id>
     <title>xiaohu</title>
-    <updated>2020-01-21T03:28:36.352Z</updated>
+    <updated>2020-01-21T03:39:53.548Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://stoneskipping.info"/>
     <link rel="self" href="http://stoneskipping.info/atom.xml"/>
@@ -16,9 +16,15 @@
         <link href="http://stoneskipping.info/post/python30-ge-ji-qiao">
         </link>
         <updated>2020-01-21T02:56:29.000Z</updated>
-        <summary type="html"><![CDATA[<p>随着假期的过去，我们大部分人已经返回到了工作中。这里有30个Python最佳实践技巧，虽然需要花点时间，但我肯定在这过程中仍然可以学到一些有用的东西。</p>
+        <summary type="html"><![CDATA[<blockquote>
+<p>原文 https://towardsdatascience.com/30-python-best-practices-tips-and-tricks-caefb9f8c5f5</p>
+</blockquote>
+<p>随着假期的过去，我们大部分人已经返回到了工作中。这里有30个Python最佳实践技巧，虽然需要花点时间，但我肯定在这过程中仍然可以学到一些有用的东西。</p>
 ]]></summary>
-        <content type="html"><![CDATA[<p>随着假期的过去，我们大部分人已经返回到了工作中。这里有30个Python最佳实践技巧，虽然需要花点时间，但我肯定在这过程中仍然可以学到一些有用的东西。</p>
+        <content type="html"><![CDATA[<blockquote>
+<p>原文 https://towardsdatascience.com/30-python-best-practices-tips-and-tricks-caefb9f8c5f5</p>
+</blockquote>
+<p>随着假期的过去，我们大部分人已经返回到了工作中。这里有30个Python最佳实践技巧，虽然需要花点时间，但我肯定在这过程中仍然可以学到一些有用的东西。</p>
 <!-- more -->
 <p>随着假期的过去，我们大部分人已经返回到了工作中。这里有30个Python最佳实践技巧，虽然需要花点时间，但我肯定在这过程中仍然可以学到一些有用的东西。</p>
 <h3 id="用python3">用Python3</h3>
